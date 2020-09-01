@@ -8,7 +8,7 @@ namespace Codility
 {
     public class OddOccurrencesInArray
     {
-        public int solution(int[] A)
+        public int solutioXn(int[] A)
         {
             int foundValue = -1;
             while (foundValue < 0)
@@ -25,6 +25,38 @@ namespace Codility
                 }
             }
             return foundValue;
+        }
+
+        public int solution(int[] A)
+        {
+            int keyToReturn = -1;
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (dict.ContainsKey(A[i]))
+                {
+                    dict[A[i]]++;
+                }else
+                {
+                    dict.Add(A[i], 1);
+                }
+            }
+            var isOdd = false;
+            
+            while (!isOdd)
+            {              
+                foreach (int key in dict.Keys)
+                {
+
+                    keyToReturn = key;
+                    isOdd = dict[key] % 2 != 0;
+                    if (isOdd)
+                    {
+                        return key;
+                    }
+                }
+            }
+            return keyToReturn;
         }
     }
 }
