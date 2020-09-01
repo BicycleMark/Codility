@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace Codility
 {
@@ -56,6 +56,32 @@ namespace Codility
         {
             var odd = new OddOccurrencesInArray();
             Assert.AreEqual(expectedIndex, odd.solution(lst));
+
+        }
+        [TestCase(10,85,30, 3)]
+        [Test]
+        public void TestFrogJmp(int X, int Y, int D, int expected)
+        {
+            var fj = new FrogJmp();
+            Assert.AreEqual(expected, fj.solution(X, Y, D));
+
+        }
+
+        [TestCase(4, 2,3,1,5)]
+        [Test]
+        public void TestPermMissingElem(int expected, params int[]  lst )
+        {
+            var pme = new PermMissingElem();
+            Assert.AreEqual(expected, pme.solution(lst));
+
+        }
+
+        [TestCase(1, 3,1,2,4,3)]
+        [Test]
+        public void TestPermMissingEleme(int expected, params int[] lst)
+        {
+            var pme = new TapeEqiuilibrium();
+            Assert.AreEqual(expected, pme.solution(lst));
 
         }
     }
