@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
+
 namespace Codility
 {
     public class CodilityTest
@@ -47,6 +48,15 @@ namespace Codility
             var a = ToIntArray(A);
             var b = ToIntArray(B);
             Assert.AreEqual(b, cr.solution(a, K));
+        }
+
+        [TestCase(7,  9, 3, 9, 3 , 9 ,  7, 9)]
+        [Test]
+        public void TestOddOccurrencesInArray(int expectedIndex, params int[] lst)
+        {
+            var odd = new OddOccurrencesInArray();
+            Assert.AreEqual(expectedIndex, odd.solution(lst));
+
         }
     }
 }
