@@ -1,15 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Codility
 {
     public class TapeEqiuilibrium
     {
+       
         public int solution(int[] A)
         {
-            int retVal = 0;
-            return retVal;
+          
+            long minDiff = long.MaxValue;
+            long remainingSum = A.Sum()-A[0];
+            long runningSum = A[0];
+            
+            for  (int P = 1; P <= A.Length-1; P++)
+            {
+               
+                var dif =Math.Abs( runningSum - remainingSum);
+                if (dif < minDiff )
+                {
+                    minDiff = dif;
+                }
+                int n = A[P];
+                remainingSum -= n;
+                runningSum += n;
+            }
+            return (int)minDiff; ;
         }
     }
 }
