@@ -112,6 +112,42 @@ namespace Codility
             var frOne = new FrogRiverOne();
             Assert.AreEqual(expected, frOne.solution(X, A));
         }
+        [Test]
+        public void TestMaxCounter()
+        {
+            var prob = new MaxCounter();
+            
+            var B = prob.solution(5, new int[] { 3, 4, 4, 6, 1, 4, 4 });
+            Assert.AreEqual(3, B[0]);
+            Assert.AreEqual(2, B[1]);
+            Assert.AreEqual(2, B[2]);
+            Assert.AreEqual(4, B[3]);
+            Assert.AreEqual(2, B[4]);
+
+        }
+
+        [TestCase(5,3,6,4,1,2)]
+        [TestCase(5, 3, 6, 4, 1, 2)]
+        [TestCase(5,1, 3, 6, 4, 1, 2)]
+        [TestCase(4, 1, 2, 3)]
+        [TestCase(1,-1,-3)]
+        public void TestMMissingInteger(int expected, params int[] A)
+        {
+            var sol = new MissingInteger();
+            Assert.AreEqual(expected, sol.solution(A));
+
+
+        }
+        [TestCase(1,4,1,3,2)]
+        [TestCase(0, 4, 1, 3)]
+
+        public void TestPermCheck(int expected, params int[] A)
+        {
+            var sol = new PermCheck();
+            Assert.AreEqual(expected, sol.solution(A));
+        }
+
+
 
         [TestCase(-1)]
         public void TestProblemOne(int expected)
