@@ -7,34 +7,37 @@ namespace Codility
 {
     public class FrogRiverOne
     {
-        public int solution(int X, int[] A)
+      
+    
+    public int solution(int X, int[] A)
+    {
+        if (A.Length == 1)
         {
-            if (A.Length==1)
+            if (A[0] == X)
             {
-                if (A[0] == X)
-                {
-                    return 0;
-                }
-                else
-                    return -1;
+                return 0;
             }
-            Dictionary<int,int> dict = new Dictionary<int,int>();
-            for (int i = 1; i <= X; i++)
-            {
-                dict.Add(i, -1);
-            }
-            int second = 0;
-
-            do
-            {
-                if (dict.ContainsKey(A[second]))
-                    dict[A[second]]++;     
-                ++second;
-                if (second > A.Length - 1)
-                    return -1;
-            } while (dict.Values.Count(x => x == -1) > 0);
-            return --second;
-
+            else
+                return -1;
         }
+        bool connected = false;
+        var len = A.Length;
+        int second = 0;
+      
+        bool[] visited = new bool[X+1];
+            visited[0] = true;
+        do
+        {
+            visited[A[second]] = true;
+            connected = visited.Count(v=>v==false) == 0;
+            if (!connected && second < len)
+                ++second;
+        } while (!connected && second < len);
+
+        if (connected)
+            return second;
+        else
+            return -1;
+    }
     }
 }

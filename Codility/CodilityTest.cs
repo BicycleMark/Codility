@@ -140,6 +140,9 @@ namespace Codility
         }
         [TestCase(1,4,1,3,2)]
         [TestCase(0, 4, 1, 3)]
+        [TestCase(1,1)]
+        [TestCase(1, 100000000)]
+
 
         public void TestPermCheck(int expected, params int[] A)
         {
@@ -147,10 +150,65 @@ namespace Codility
             Assert.AreEqual(expected, sol.solution(A));
         }
 
+        [TestCase(3, 6,11,2)]
+        public void TestCountDiv(int expected, int A, int B, int K)
+        {
+            var prob = new CountDiv();
+            Assert.AreEqual(expected, prob.solution(A, B, K));
+        }
 
+        [TestCase("2,4,1", "CAGCCTA","2,5,0", "4,5,6")]
+        public void TestGenomicRangeQuery(string expectedStr, string S, string Pstr, string Qstr)
+        {
+            var prob = new GenomicRangeQuery();
+            var expected = ToIntArray(expectedStr);
+            var P = ToIntArray(Pstr);
+            var Q = ToIntArray(Qstr);
+            var retVal = prob.solution(S, P, Q);
+            Assert.AreEqual(expected[0], retVal[0]);
+            Assert.AreEqual(expected[1], retVal[1]);
+            Assert.AreEqual(expected[2], retVal[2]);
+        }
 
-        [TestCase(-1)]
-        public void TestProblemOne(int expected)
+        [TestCase(1,
+                  4,
+                  2,
+                  2,
+                  5,
+                  1,
+                  5,
+                  8
+            )]
+        public void TestMinAvgTwoSlices(int expected, params int[] A)
+        {
+            var prob = new MinAvgTwoSlice();
+            Assert.AreEqual(expected, prob.solution(A));
+        }
+
+        [TestCase(5, 
+                  0,
+                  1,
+                  0,
+                  1,
+                  1
+            
+            )]
+        public void TestPassingCars(int expected, params int[] A)
+        {
+            var prob = new PassingCars();
+            Assert.AreEqual(expected, prob.solution(A));
+        }
+
+        [TestCase(3,  2, 1 ,1, 2, 3, 1)]
+        public void TestDistinct(int expected, params int[] A)
+        {
+            var prob = new Distinct();
+            Assert.AreEqual(expected, prob.solution(A));
+        }
+
+        [TestCase(-1, 1)]
+
+        public void TestProblemOne(int expected, params int[] A)
         {
             var prob = new SchneiderProblemOne();
             Assert.AreEqual(expected, prob.solution());
@@ -158,7 +216,7 @@ namespace Codility
         }
 
         [TestCase(-1)]
-        public void TestProblemTwo(int expected)
+        public void TestProblemTwo(int expected, params int[] A)
         {
             var prob = new SchneiderProblemTwo();
             Assert.AreEqual(expected, prob.solution());
