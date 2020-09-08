@@ -17,25 +17,30 @@ namespace Codility
                 return false; ;
         }
 
+        //Test report here: https://app.codility.com/demo/results/trainingF9HN7G-D8R/
         public int solution(int[] A)
         {
-            if (A.Count(x=>x>0) == 0)
+            A = A.Where(x => x > 0).OrderBy(x => x).Distinct().ToArray();
+            if (A.Length==0 || A.Count(x => x > 0) == 0 || !A.Contains(1))
             {
                 return 1;
             }else
             {
-                var positiveSubset = A.Where(x => x >= 1).Distinct();
-                if (positiveSubset.Min() > 1)
-                    return 1;
-                if (isContiguous(positiveSubset.ToArray()))
-                    return positiveSubset.Max() + 1;
+                int len = A.Length;
+                if (isContiguous(A))
+                    return A[len-1]+1;
                 else
                 {
-                    positiveSubset = positiveSubset.OrderBy(x => x);
-                    var fullArray = Enumerable.Range(1, A.Max()).ToArray();
-                    return fullArray.Except(positiveSubset).OrderBy(x => x).First();
+                    var max = A.Max();
+                    var positiveSubset = A.Where(x => x >= 1).ToArray();
+                    for (int i = 0; i < positiveSubset.Length; i++)
+                    {
+                        if (i + 1 != positiveSubset[i])
+                            return i + 1;
+                    }
                 }   
             }
+            return -1;
         }
     }
 }

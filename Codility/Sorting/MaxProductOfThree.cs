@@ -9,64 +9,23 @@ namespace Codility
     public class MaxProductOfThree
     {
 
+
+        // Passing url = https://app.codility.com/demo/results/trainingA9MA6Q-EM2/
         public int solution(int[] A)
         {
-            var a = A.ToList().Where(x=>x>=0).OrderByDescending(x => x);
-            var b = A.ToList().Where(x=>x<0).OrderByDescending(x=>x);
-            List<int> list2NegAnd1Positive = new List<int>();
-            List<int> list3Positive = new List<int>();
-            List<int> list3Negative = new List<int>();
-            List<int> Maxes = new List<int>();
-            if (a.Count() >= 3)
-            {
-                list3Positive = a.Take(3).ToList();
-            }
-            if (b.Count() >= 2)
-            {
-                list2NegAnd1Positive = b.Take(2).ToList();
-                if (a.Count() >= 1)
-                {
-                    list2NegAnd1Positive.Add(a.First());
-                }else
-                {
-
-                }
-            }
-            if (b.Count() >= 3)
-            {
-                list3Negative = b.Take(3).ToList();
-            }
-            
-            if (list3Positive.Count >= 3)
-                try
-                {
-                    Maxes.Add(list3Positive[0] * list3Positive[1] * list3Positive[2]);
-                }catch(Exception)
-                { }
-            if (list2NegAnd1Positive.Count >= 3)
-                try
-                {
-                    Maxes.Add(list2NegAnd1Positive[0] * list2NegAnd1Positive[1] * list2NegAnd1Positive[2]);
-                }catch(Exception)
-                { }
-            if (list3Negative.Count >= 3)
-                try
-                {
-                    Maxes.Add(list3Negative[0] * list3Negative[1] * list3Negative[2]);
-                }
-                catch (Exception)
-                { }
-            return Maxes.Max();
-
-            
-
-            
+            A = A.OrderBy(x => x).ToArray();
+            int F = 0;
+            int L = A.Length - 1;
+            int s1 = A[F] * A[F + 1] * A[F + 2];
+            int s2 = A[L] * A[L - 1] * A[F];
+            int s3 = A[F] * A[F + 1] * A[L];
+            int s4 = A[L] * A[L - 1] * A[L - 2];
+            return Math.Max(Math.Max(s1, s2), Math.Max(s3, s4));
         }
     }
-
     public class Test
     {
-        [TestCase(-120,-5, -6, -4, -7, -10)]
+       [TestCase(-120,-5, -6, -4, -7, -10)]
        [TestCase(125, -5, 5, -5, 4)]
         
         [TestCase(-80,-10, -2, -4)]

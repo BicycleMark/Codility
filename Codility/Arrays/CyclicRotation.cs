@@ -18,10 +18,9 @@ namespace Codility
                 lst.Add(array[i]);
 
             }
-
-
             return lst.ToArray();
         }
+        //Report: https://app.codility.com/demo/results/trainingA7NCY4-DNY/
         public int[] solution(int[] A, int K)
         {
             int len = A.Length;

@@ -8,15 +8,10 @@ namespace Codility
 {
     public class BinaryGap
     {
+        //Report: https://app.codility.com/c/close/trainingKYR5CD-F3U/?final_task_completed=1
         public int solution(int N)
         {
-            /*
-                [TestCase(9,2, "1001")]
-                [TestCase(529,4, "1000010001")]
-                [TestCase(20,1, "10100")] 
-                [TestCase(15,0,"1111")]
-                [TestCase(32,0, "100000")]
-             */
+           
             int retVal = 0;
             var binary = Convert.ToString(N, 2);
             var len = binary.Length;

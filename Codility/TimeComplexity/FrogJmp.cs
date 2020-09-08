@@ -6,6 +6,7 @@ namespace Codility
 {
     public class FrogJmp
     {
+        // Report:https://app.codility.com/demo/results/training57KCJX-9A5/ 
         public int solution(int X, int Y, int D)
         {
             if (X == Y)

@@ -29,48 +29,35 @@ namespace Codility
         /// <returns></returns>
         public int solution(int[] A)
         {
-            Dictionary<(int P, int Q), double> avgDictionary = new Dictionary<(int P, int Q), double>();
-            int N = A.Length;
-            List<(int p, int q)> lstMins = new List<(int p, int q)>(); 
-            
-            double minAvg = double.MaxValue;
-            int minP = int.MaxValue;
-            int minQ = int.MaxValue;
-            for (int p = 0; p < N; p++)
+          
+           
+            int sliceThickness = 3 ;
+            int len = A.Length;
+            if (len % 2 == 0)
+                sliceThickness = 3;
+            int i = sliceThickness-1;
+            var minAvg = double.MaxValue;
+            var P = int.MaxValue;
+            while(i < len)
             {
-                double avg = double.MaxValue ;
-                int nPass = 1;
-                int sum = A[p];
-                for (int q = p + 1; q < N; q++)
+                int sum = 0;
+                for (int j=sliceThickness; j>=0; j--)
                 {
-                    
-                    if (avgDictionary.ContainsKey((p, q)))
-                    {
-                        avg = avgDictionary[(p, q)];
-                        break;
-
-                    }else
-                    {
-                        sum += A[q];
-                        avg = sum / ++nPass;
-                        avgDictionary.Add((p, q), avg);
-                    }
-                    if (avg < minAvg)
-                    {
-                        minAvg = avg;
-                        minP = p;
-                        minQ = q;
-                        
-                        lstMins.Add((minP, minQ));
-
-                    }
-                    ++nPass;
+                    sum += A[i + j];
+                }
+                var avg = sum / sliceThickness;
+                if (avg < minAvg)
+                {
+                    minAvg = avg;
+                    P = i;
 
                 }
-                       
+                i += sliceThickness;
+            }
+            return P;  
         }
-        return lstMins[0].p;
+       
 
-        }
+        
     }
 }

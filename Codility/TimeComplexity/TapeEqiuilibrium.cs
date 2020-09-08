@@ -7,7 +7,7 @@ namespace Codility
 {
     public class TapeEqiuilibrium
     {
-       
+        //Report: https://app.codility.com/demo/results/trainingJDH2JF-UDT/
         public int solution(int[] A)
         {
           

@@ -9,6 +9,7 @@ namespace Codility
 {
     public class PermMissingElem
     {
+        //Report: https://app.codility.com/demo/results/trainingWUWJEA-4ME/
         public int solution(int[] A)
         {
             if (A == null || A.Length == 0 )

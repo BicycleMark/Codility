@@ -20,20 +20,17 @@ namespace Codility
             else
                 return false; ;
         }
+        // results here: https://app.codility.com/demo/results/trainingUH4N5K-5ZH/
         public int solution(int[] A)
         {
             if (A.Count() != A.Distinct().Count())
                 return 0;
-            if (A.Count() == 1)
-            {
-                return 1;
-            }
-            A = A.OrderBy(x => x).ToArray();
-            var fullArray = Enumerable.Range(A.Min(), A.Max()).ToArray();
-            if (fullArray.Except(A).Count() == 0)
+           
+            if (A.Min() == 1 && A.Max() == A.Length)
                 return 1;
             else
                 return 0;
+            
         }
     }
 }

@@ -112,17 +112,19 @@ namespace Codility
             var frOne = new FrogRiverOne();
             Assert.AreEqual(expected, frOne.solution(X, A));
         }
-        [Test]
-        public void TestMaxCounter()
+        [TestCase("3,2,2,4,2", 5, 3, 4, 4, 6, 1, 4, 4)]
+        [TestCase("0,0,0,0,0", 5, 6,6,6,6,6)]
+        public void TestMaxCounter(string expectedCSV, int N, params int[]A)
         {
             var prob = new MaxCounter();
             
-            var B = prob.solution(5, new int[] { 3, 4, 4, 6, 1, 4, 4 });
-            Assert.AreEqual(3, B[0]);
-            Assert.AreEqual(2, B[1]);
-            Assert.AreEqual(2, B[2]);
-            Assert.AreEqual(4, B[3]);
-            Assert.AreEqual(2, B[4]);
+            var B = prob.solution(N,A);
+            var E = ToIntArray(expectedCSV);
+            Assert.AreEqual(E[0], B[0]);
+            Assert.AreEqual(E[1], B[1]);
+            Assert.AreEqual(E[2], B[2]);
+            Assert.AreEqual(E[3], B[3]);
+            Assert.AreEqual(E[4], B[4]);
 
         }
 
@@ -131,6 +133,7 @@ namespace Codility
         [TestCase(5,1, 3, 6, 4, 1, 2)]
         [TestCase(4, 1, 2, 3)]
         [TestCase(1,-1,-3)]
+        
         public void TestMMissingInteger(int expected, params int[] A)
         {
             var sol = new MissingInteger();
@@ -141,7 +144,7 @@ namespace Codility
         [TestCase(1,4,1,3,2)]
         [TestCase(0, 4, 1, 3)]
         [TestCase(1,1)]
-        [TestCase(1, 100000000)]
+        
 
 
         public void TestPermCheck(int expected, params int[] A)
@@ -168,6 +171,19 @@ namespace Codility
             Assert.AreEqual(expected[0], retVal[0]);
             Assert.AreEqual(expected[1], retVal[1]);
             Assert.AreEqual(expected[2], retVal[2]);
+            Assert.Inconclusive("Optimize More");
+        }
+        [TestCase("2,4,1", "CAGCCTACAGCCTA", "2,5,0", "4,5,6")]
+        public void TestGenomicRangeQuery2(string expectedStr, string S, string Pstr, string Qstr)
+        {
+            var prob = new GenomicRangeQuery();
+            var expected = ToIntArray(expectedStr);
+            var P = ToIntArray(Pstr);
+            var Q = ToIntArray(Qstr);
+            var retVal = prob.solution(S, P, Q);
+            Assert.AreEqual(expected[0], retVal[0]);
+            Assert.AreEqual(expected[1], retVal[1]);
+            Assert.AreEqual(expected[2], retVal[2]);      
         }
 
         [TestCase(1,
@@ -206,20 +222,27 @@ namespace Codility
             Assert.AreEqual(expected, prob.solution(A));
         }
 
-        [TestCase(-1, 1)]
+        [TestCase(7, "aakmaakmakda")]
+        [TestCase(1, "aaa")]
+        [TestCase(2, "aaaa")]
+        [TestCase(-1, "codility")]
+        [TestCase(13, "goaagowerhhingo")]
 
-        public void TestProblemOne(int expected, params int[] A)
+        public void TestProblemOne(int expected, string S)
         {
             var prob = new SchneiderProblemOne();
-            Assert.AreEqual(expected, prob.solution());
+            Assert.AreEqual(expected, prob.solution(S));
 
         }
 
-        [TestCase(-1)]
+        [TestCase(4,3,5,6,3,3,5)]
+        [TestCase(1, 1,1)]
+        [TestCase(0,1,2,3)]
+        [TestCase(1,1,1,3)]
         public void TestProblemTwo(int expected, params int[] A)
         {
             var prob = new SchneiderProblemTwo();
-            Assert.AreEqual(expected, prob.solution());
+            Assert.AreEqual(expected, prob.solution(A));
 
         }
     }
